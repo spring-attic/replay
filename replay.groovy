@@ -1,7 +1,10 @@
 package io.spring.replay
 
-@Grab("org.springframework.boot:spring-boot-starter:0.5.0.M4") @Grab("org.springframework:spring-web:3.2.2.RELEASE") // this version support CF library
-@Grab("org.cloudfoundry:cloudfoundry-client-lib:0.8.7") @Grab("org.codehaus.jackson:jackson-core-asl:1.6.2") @Grab("org.codehaus.jackson:jackson-mapper-asl:1.6.2")
+@Grab("org.springframework.boot:spring-boot-starter:0.5.0.M4")
+@Grab("org.springframework:spring-web:3.2.2.RELEASE") // this version support CF library
+@Grab("org.cloudfoundry:cloudfoundry-client-lib:0.8.7")
+@Grab("org.codehaus.jackson:jackson-core-asl:1.6.2")
+@Grab("org.codehaus.jackson:jackson-mapper-asl:1.6.2")
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.http.client.ClientHttpResponse
