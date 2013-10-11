@@ -1,0 +1,7 @@
+.idea
+*.iml
+results.txt
+
+# This is where your credentials will be, so don't
+# want to accidentally add it to source control
+application.properties
