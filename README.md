@@ -24,7 +24,7 @@ $ gem install logs-cf-plugin --pre -v '0.0.44.pre'
 
 Finally, you must create an `application.properties` files in the same folder where `replay.groovy` is found with your CF credentials.
 
-```txt
+```properties
 username=<your CF username>
 password=<your CF password>
 ```
