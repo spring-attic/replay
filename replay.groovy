@@ -20,8 +20,7 @@ import org.springframework.web.client.ResponseErrorHandler
  * username=<your CF username>
  * password=<your CF password>
  *
- * This requires that you have cf CLI installed and are already logged in
- * and that you also have logs-cf-plugin 0.0.44.pre installed.
+ * This requires that you have cf CLI installed and that you also have logs-cf-plugin 0.0.44.pre installed.
  *
  * NOTE: This class won't be part of the test suite
  */
@@ -40,21 +39,29 @@ class Application implements CommandLineRunner {
 	@Value('${password}')
 	private String password
 
-	/**
-	 * This application assumes you are already logged into CF
-	 * @param args - command line parameters
-	 */
 	void run(String... args) {
+		"cf logout".execute().waitFor()
+
+		"cf login --username ${username} --password ${password} --org spring.io --space production".execute().waitFor()
+
 		log.info "Fetching logs"
+		Thread th1 = monitor("sagan-blue")
+		Thread th2 = monitor("sagan-green")
+		th1.run()
+		th2.run()
+	}
 
-		def proc = "cf logs sagan-blue".execute()
+	def monitor(String node) {
+		Thread.start {
+			def proc = "cf logs ${node}".execute()
 
-		proc.in.newReader().eachLine {
-			def results = parser.parse(it)
-			if (results != "Invalid log line") {
-				replay.method(results, "staging")
+			proc.in.newReader().eachLine {
+				def results = parser.parse(it)
+				if (results != "Invalid log line") {
+					replay.method(results, "staging", node)
+				}
+
 			}
-
 		}
 	}
 }
@@ -79,23 +86,30 @@ class Replay {
 		}
 	}
 
-	def method(Line arg, String space = null) {
+	synchronized def method(Line arg, String space = null, String node = "") {
 		if (space) {
-			call(arg, "http://${space}.${arg.host}${arg.path}")
+			call(arg, "http://${space}.${arg.host}${arg.path}", node)
 		} else {
-			call(arg, "http://${arg.host}${arg.path}")
+			call(arg, "http://${arg.host}${arg.path}", node)
 		}
 	}
 
-	private def call(Line arg, String query) {
+	private def call(Line arg, String query, String node) {
 		if (arg.method == "GET") {
 			try {
-				log.info "Invoking GET ${query}"
+				log.info "Replaying ${node} ${arg.method} ${query}"
 				restTemplate.getForObject(query, String.class)
 			} catch (HttpClientErrorException e) {
 				// Absorb 404 errors
 			}
 			true
+		} else if (arg.method == "HEAD") {
+			try {
+				log.info "Replaying ${node} ${arg.method} ${query}"
+				restTemplate.headForHeaders(query)
+			} catch (HttpClientErrorException e) {
+				// Absorb 404 errors
+			}
 		} else {
 			log.info "We don't handle ${arg.method}"
 			false
@@ -115,10 +129,11 @@ class Line {
 }
 
 @Service
+@Log
 class LogParser {
 	def parse(String line) {
 		def preprocessed = line.split()
-		if (preprocessed.length >= 9) {
+		if (preprocessed.length >= 12) {
 			new Line(host: preprocessed[6],
 					path: preprocessed[11],
 					method: preprocessed[10][1..-1]
