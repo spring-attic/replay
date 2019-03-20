@@ -57,19 +57,19 @@ This should start things up. It may take a few seconds to get started if this is
 2013-10-14 16:59:16.507  INFO 92375 --- [       runner-0] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@4d38e3ae: startup date [Mon Oct 14 16:59:16 EDT 2013]; root of context hierarchy
 2013-10-14 16:59:17.769  INFO 92375 --- [       runner-0] o.s.boot.SpringApplication               : Started application in 1.502 seconds
 2013-10-14 16:59:27.960  INFO 92375 --- [       runner-0] io.spring.replay.Application             : Fetching logs
-2013-10-14 16:59:39.572  INFO 92375 --- [       Thread-2] io.spring.replay.Replay                  : Replaying sagan-blue GET http://staging.spring.io/css/search.css
-2013-10-14 16:59:42.111  INFO 92375 --- [       runner-0] io.spring.replay.Replay                  : Replaying sagan-blue GET http://staging.spring.io/css/search.css
-2013-10-14 16:59:43.049  INFO 92375 --- [       Thread-2] io.spring.replay.Replay                  : Replaying sagan-blue GET http://staging.spring.io/project_metadata/spring-security-oauth?callback=jQuery110106259836407843977_1381784389876&_=1381784389877
-2013-10-14 16:59:43.772  INFO 92375 --- [       runner-0] io.spring.replay.Replay                  : Replaying sagan-blue GET http://staging.spring.io/project_metadata/spring-security-oauth?callback=jQuery110106259836407843977_1381784389876&_=1381784389877
-2013-10-14 16:59:44.387  INFO 92375 --- [       Thread-2] io.spring.replay.Replay                  : Replaying sagan-blue GET http://staging.spring.io/js/search.js
-2013-10-14 16:59:44.718  INFO 92375 --- [       runner-0] io.spring.replay.Replay                  : Replaying sagan-blue GET http://staging.spring.io/js/search.js
-2013-10-14 16:59:45.053  INFO 92375 --- [       Thread-2] io.spring.replay.Replay                  : Replaying sagan-blue GET http://staging.spring.io/
-2013-10-14 16:59:45.899  INFO 92375 --- [       runner-0] io.spring.replay.Replay                  : Replaying sagan-blue GET http://staging.spring.io/
-2013-10-14 16:59:46.672  INFO 92375 --- [       Thread-2] io.spring.replay.Replay                  : Replaying sagan-blue GET http://staging.spring.io/blog/
-2013-10-14 16:59:47.749  INFO 92375 --- [       runner-0] io.spring.replay.Replay                  : Replaying sagan-blue GET http://staging.spring.io/blog/
-2013-10-14 16:59:49.859  INFO 92375 --- [       Thread-2] io.spring.replay.Replay                  : Replaying sagan-blue GET http://staging.spring.io/blog/feed/
-2013-10-14 16:59:50.384  INFO 92375 --- [       runner-0] io.spring.replay.Replay                  : Replaying sagan-blue GET http://staging.spring.io/blog/feed/
-2013-10-14 16:59:51.251  INFO 92375 --- [       Thread-2] io.spring.replay.Replay                  : Replaying sagan-blue GET http://staging.spring.io/
+2013-10-14 16:59:39.572  INFO 92375 --- [       Thread-2] io.spring.replay.Replay                  : Replaying sagan-blue GET https://staging.spring.io/css/search.css
+2013-10-14 16:59:42.111  INFO 92375 --- [       runner-0] io.spring.replay.Replay                  : Replaying sagan-blue GET https://staging.spring.io/css/search.css
+2013-10-14 16:59:43.049  INFO 92375 --- [       Thread-2] io.spring.replay.Replay                  : Replaying sagan-blue GET https://staging.spring.io/project_metadata/spring-security-oauth?callback=jQuery110106259836407843977_1381784389876&_=1381784389877
+2013-10-14 16:59:43.772  INFO 92375 --- [       runner-0] io.spring.replay.Replay                  : Replaying sagan-blue GET https://staging.spring.io/project_metadata/spring-security-oauth?callback=jQuery110106259836407843977_1381784389876&_=1381784389877
+2013-10-14 16:59:44.387  INFO 92375 --- [       Thread-2] io.spring.replay.Replay                  : Replaying sagan-blue GET https://staging.spring.io/js/search.js
+2013-10-14 16:59:44.718  INFO 92375 --- [       runner-0] io.spring.replay.Replay                  : Replaying sagan-blue GET https://staging.spring.io/js/search.js
+2013-10-14 16:59:45.053  INFO 92375 --- [       Thread-2] io.spring.replay.Replay                  : Replaying sagan-blue GET https://staging.spring.io/
+2013-10-14 16:59:45.899  INFO 92375 --- [       runner-0] io.spring.replay.Replay                  : Replaying sagan-blue GET https://staging.spring.io/
+2013-10-14 16:59:46.672  INFO 92375 --- [       Thread-2] io.spring.replay.Replay                  : Replaying sagan-blue GET https://staging.spring.io/blog/
+2013-10-14 16:59:47.749  INFO 92375 --- [       runner-0] io.spring.replay.Replay                  : Replaying sagan-blue GET https://staging.spring.io/blog/
+2013-10-14 16:59:49.859  INFO 92375 --- [       Thread-2] io.spring.replay.Replay                  : Replaying sagan-blue GET https://staging.spring.io/blog/feed/
+2013-10-14 16:59:50.384  INFO 92375 --- [       runner-0] io.spring.replay.Replay                  : Replaying sagan-blue GET https://staging.spring.io/blog/feed/
+2013-10-14 16:59:51.251  INFO 92375 --- [       Thread-2] io.spring.replay.Replay                  : Replaying sagan-blue GET https://staging.spring.io/
 ```
 
 Hit CTRL-C to stop the app. Each line indicates where it got the data (sagan-blue from production) and the exact location where it is replaying that web request.
