@@ -1,3 +1,5 @@
+# This repository is no longer actively maintained by VMware, Inc.
+
 # Replay
 
 This app is used to pull log data continuously, and then "replay" it against a test site. This is meant to load test the web site using live traffic and hopefully discover issues before rolling out to production.
